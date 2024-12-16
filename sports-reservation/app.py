@@ -1,9 +1,11 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import jwt
 import datetime
-from flask import Flask, request, jsonify
 from functools import wraps
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 
 users = [
     {"username": "Patrik", "password": "angular"}
@@ -57,7 +59,7 @@ def login():
         return jsonify({"message": "Nesprávne prihlasovacie údaje"}), 401
 
 
-@app.route('/items', methods=['GET'])
+@app.route('/listofitems', methods=['POST'])
 @token_required
 def get_items(decoded_token):
     return jsonify(items)

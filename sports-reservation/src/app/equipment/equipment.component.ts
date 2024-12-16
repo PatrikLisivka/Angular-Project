@@ -64,16 +64,17 @@ export class EquipmentComponent implements OnInit {
       return;
     }
 
-    this.equipmentService.addEquipment(this.newItem).subscribe(
-      (response) => {
-        this.successMessage = 'Vybavenie bolo úspešne pridané!';
-        this.loadItems();
-        this.newItem = { name: '', description: '', price: 0 };
-      },
-      (error) => {
-        this.errorMessage = 'Nepodarilo sa pridať vybavenie.';
-        console.error(error);
-      }
-    );
-  }
+      this.equipmentService.addEquipment(this.newItem).subscribe(
+        (response) => {
+          console.log('Vybavenie bolo pridané:', response);
+          this.successMessage = 'Vybavenie bolo úspešne pridané!';
+          this.loadItems(); // Načítaj aktualizovaný zoznam
+          this.newItem = { name: '', description: '', price: 0 };
+        },
+        (error) => {
+          console.error('Nepodarilo sa pridať vybavenie:', error);
+          this.errorMessage = 'Nepodarilo sa pridať vybavenie.';
+        }
+      );
+    }
 }

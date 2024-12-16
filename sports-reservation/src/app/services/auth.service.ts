@@ -8,19 +8,21 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private baseUrl = 'http://localhost:5000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login`, { username, password });
   }
 
   setToken(token: string): void {
+    console.log('Token:', token);
     localStorage.setItem('token', token);
   }
 
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
 
   isAuthenticated(): boolean {
     return this.getToken() !== null;
