@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sports-reservation": {
+    "SportsReservation": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -30,7 +30,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sports-reservation:build:production"
+              "buildTarget": "SportsReservation:build:production"
             },
             "development": {
-              "buildTarget": "sports-reservation:build:development"
+              "buildTarget": "SportsReservation:build:development"
             }
           },
           "defaultConfiguration": "development"

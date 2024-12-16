@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h2>Správa športového vybavenia</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success" role="alert">
+    {{ successMessage }}
+  </div>
+
+  <h3>Zoznam vybavenia</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Názov</th>
+        <th>Popis</th>
+        <th>Cena</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }} €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form (ngSubmit)="addItem()" class="mt-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Názov</label>
+      <input id="name" [(ngModel)]="newItem.name" name="name" type="text" class="form-control"
+        placeholder="Názov vybavenia" />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Popis</label>
+      <textarea id="description" [(ngModel)]="newItem.description" name="description" class="form-control"
+        placeholder="Popis vybavenia"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Cena</label>
+      <input id="price" [(ngModel)]="newItem.price" name="price" type="number" class="form-control"
+        placeholder="Cena v EUR" />
+    </div>
+    <button type="submit" class="btn btn-primary">Pridať vybavenie</button>
+  </form>
+</div>

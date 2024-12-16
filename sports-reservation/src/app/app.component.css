@@ -1,0 +1,10 @@
+.nav-link:hover {
+    background-color: #e2e6ea; 
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    transition: box-shadow 0.2s ease-in-out;
+  }

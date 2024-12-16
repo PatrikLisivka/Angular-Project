@@ -1,3 +1,30 @@
-<div class="container">
-  <h1 class="text-primary">Sports Reservation</h1>
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">Rezervácia športového vybavenia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link text-white fw-semibold" routerLink="/equipment">Športové vybavenie</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link text-white fw-semibold" routerLink="/login">Prihlásenie</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h1 class="display-5 text-primary fw-bold">Vitajte v Rezervácii športového vybavenia</h1>
+    <p class="lead text-muted">Jednoducho si zarezervujte športové vybavenie a užívajte si aktivity bez starostí!</p>
+  </div>
+  <router-outlet></router-outlet>
 </div>
