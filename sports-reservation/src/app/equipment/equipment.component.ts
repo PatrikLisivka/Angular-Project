@@ -68,7 +68,7 @@ export class EquipmentComponent implements OnInit {
         (response) => {
           console.log('Vybavenie bolo pridané:', response);
           this.successMessage = 'Vybavenie bolo úspešne pridané!';
-          this.loadItems(); // Načítaj aktualizovaný zoznam
+          this.loadItems();
           this.newItem = { name: '', description: '', price: 0 };
         },
         (error) => {

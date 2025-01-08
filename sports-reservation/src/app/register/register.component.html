@@ -2,25 +2,24 @@
   <div class="col-4">
     <div class="card shadow-sm">
       <div class="card-header bg-primary text-white">
-        <h4 class="mb-0">Prihlásenie</h4>
+        <h4 class="mb-0">Registrácia</h4>
       </div>
       <div class="card-body">
-        <form (ngSubmit)="login()">
+        <form (ngSubmit)="onRegister()">
           <div class="form-group mb-3">
             <label class="form-label">Meno používateľa</label>
             <input type="text" class="form-control" placeholder="Zadajte meno" [(ngModel)]="username" name="username"
-              required>
+              required />
           </div>
           <div class="form-group mb-4">
             <label class="form-label">Heslo</label>
             <input type="password" class="form-control" placeholder="Zadajte heslo" [(ngModel)]="password"
-              name="password" required>
+              name="password" required />
           </div>
-          <button class="btn btn-outline-primary" type="submit">Prihlásiť sa</button>
+          <button class="btn btn-outline-primary" type="submit">Registrovať sa</button>
         </form>
-
-        <div *ngIf="errorMessage" class="text-danger mt-3">
-          {{ errorMessage }}
+        <div *ngIf="message" class="text-danger mt-3">
+          {{ message }}
         </div>
       </div>
     </div>

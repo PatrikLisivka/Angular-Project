@@ -1,30 +1,27 @@
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand fw-bold" routerLink="/">Rezervácia športového vybavenia</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white fw-bold" routerLink="/">Rezervácia športového vybavenia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link text-white fw-semibold" routerLink="/equipment">Športové vybavenie</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/equipment" routerLinkActive="active">Športové vybavenie</a>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link text-white fw-semibold" routerLink="/login">Prihlásenie</a>
-        </li>
-      </ul>
+      <span class="d-flex navbar-text">
+        @if(loggedUser) {
+        <span class="text-white fw-semibold" style="margin-right: 10px">{{ loggedUser }}</span>
+        <button type="button" class="nav-link text-white" (click)="onLogout()">Odhlásiť</button>
+        } @else {
+        <a class="nav-link text-white me-2" routerLink="/login" routerLinkActive="active">Prihlásenie</a>
+        <a class="nav-link text-white" routerLink="/register" routerLinkActive="active">Registrácia</a>
+        }
+      </span>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-  <div class="text-center mb-4">
-    <h1 class="display-5 text-primary fw-bold">Vitajte v Rezervácii športového vybavenia</h1>
-    <p class="lead text-muted">Jednoducho si zarezervujte športové vybavenie a užívajte si aktivity bez starostí!</p>
-  </div>
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>

@@ -59,6 +59,24 @@ def login():
         return jsonify({"message": "Nesprávne prihlasovacie údaje"}), 401
 
 
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
+        return jsonify({"message": "Používateľské meno a heslo sú povinné"}), 400
+
+    if any(u['username'] == username for u in users):
+        return jsonify({"message": "Používateľ už existuje"}), 409
+
+    new_user = {"username": username, "password": password}
+    users.append(new_user)
+
+    return jsonify({"message": "Registrácia úspešná"}), 201
+
+
 @app.route('/listofitems', methods=['POST'])
 @token_required
 def get_items(decoded_token):
