@@ -1,0 +1,33 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="alert alert-success">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="item" class="container mt-4">
+  <h2 class="mb-4">Aktualizovať vybavenie</h2>
+  <form (ngSubmit)="updateItem()">
+    <div class="form-group">
+      <label for="name">Názov</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="item.name" name="name" required
+        placeholder="Zadajte názov vybavenia" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Popis</label>
+      <textarea id="description" class="form-control" [(ngModel)]="item.description" name="description" required
+        placeholder="Zadajte popis vybavenia"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Cena</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="item.price" name="price" required
+        placeholder="Zadajte cenu vybavenia" />
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg mt-3">
+      Aktualizovať
+    </button>
+  </form>
+</div>

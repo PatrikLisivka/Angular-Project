@@ -46,6 +46,11 @@ export class EquipmentService {
     return this.http.put(`${this.baseUrl}/items/${id}`, requestBody);
   }
 
+  getEquipmentById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/items/${id}`);
+  }
+
+
   deleteEquipment(id: number): Observable<any> {
     const token = this.authService.getToken();
     const requestBody = { token };

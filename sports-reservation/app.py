@@ -115,7 +115,6 @@ def update_item(decoded_token, item_id):
     if not updated_item:
         return jsonify({"message": "Nie sú zadané údaje o vybavení"}), 400
 
-    # Validácia názvu, popisu a ceny
     if 'name' not in updated_item or not updated_item['name']:
         return jsonify({"message": "Názov vybavenia je povinný"}), 400
     if 'description' not in updated_item or not updated_item['description']:
@@ -125,6 +124,13 @@ def update_item(decoded_token, item_id):
 
     items[item_id] = updated_item
     return jsonify(updated_item)
+
+@app.route('/items/<int:item_id>', methods=['GET'])
+def get_item_by_id(item_id):
+    if item_id < 0 or item_id >= len(items):
+        return jsonify({"message": "Vybavenie neexistuje"}), 404
+    item = items[item_id]
+    return jsonify(item), 200
 
 
 @app.route('/items/<int:item_id>', methods=['DELETE'])

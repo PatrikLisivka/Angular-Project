@@ -1,15 +1,12 @@
 <div class="container mt-4">
-  <h2>Správa športového vybavenia</h2>
-
-  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
-
-  <div *ngIf="successMessage" class="alert alert-success" role="alert">
+  <div *ngIf="successMessage" class="alert alert-success">
     {{ successMessage }}
   </div>
 
-  <h3>Zoznam vybavenia</h3>
+  <h3>Zoznam vybavení</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -22,27 +19,43 @@
       <tr *ngFor="let item of items">
         <td>{{ item.name }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.price }} €</td>
+        <td>{{ item.price | currency: 'EUR' }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="goToUpdatePage(item)">
+            Upraviť
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteItem(item)">
+            Odstrániť
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
 
-  <form (ngSubmit)="addItem()" class="mt-4">
+  <h3>Pridaj nové vybavenie</h3>
+  <form [formGroup]="newItemForm" (ngSubmit)="addItem()" class="mt-4">
     <div class="mb-3">
       <label for="name" class="form-label">Názov</label>
-      <input id="name" [(ngModel)]="newItem.name" name="name" type="text" class="form-control"
-        placeholder="Názov vybavenia" />
+      <input id="name" formControlName="name" type="text" class="form-control" placeholder="Názov vybavenia" />
+      <div *ngIf="name?.invalid && name?.touched" class="text-danger">
+        Názov je povinný.
+      </div>
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Popis</label>
-      <textarea id="description" [(ngModel)]="newItem.description" name="description" class="form-control"
+      <textarea id="description" formControlName="description" class="form-control"
         placeholder="Popis vybavenia"></textarea>
+      <div *ngIf="description?.invalid && description?.touched" class="text-danger">
+        Popis je povinný.
+      </div>
     </div>
     <div class="mb-3">
       <label for="price" class="form-label">Cena</label>
-      <input id="price" [(ngModel)]="newItem.price" name="price" type="number" class="form-control"
-        placeholder="Cena v EUR" />
+      <input id="price" formControlName="price" type="number" class="form-control" placeholder="Cena v EUR" />
+      <div *ngIf="price?.invalid && price?.touched" class="text-danger">
+        Cena musí byť kladné číslo.
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Pridať vybavenie</button>
+    <button type="submit" class="btn btn-primary" [disabled]="newItemForm.invalid">Pridať vybavenie</button>
   </form>
 </div>
