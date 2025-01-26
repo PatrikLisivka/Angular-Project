@@ -42,15 +42,15 @@ export class EquipmentComponent implements OnInit {
   }
 
   loadItems(): void {
-    this.equipmentService.getEquipment().subscribe(
-      (data: Item[]) => {
+    this.equipmentService.getEquipment().subscribe({
+      next: (data: Item[]) => {
         this.items = data;
         this.errorMessage = null;
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Nepodarilo sa načítať zoznam vybavenia.';
       }
-    );
+    });
   }
 
   addItem(): void {
@@ -64,18 +64,18 @@ export class EquipmentComponent implements OnInit {
 
     this.newItem = this.newItemForm.value;
 
-    this.equipmentService.addEquipment(this.newItem).subscribe(
-      (response) => {
+    this.equipmentService.addEquipment(this.newItem).subscribe({
+      next: (response) => {
         console.log('Vybavenie bolo pridané:', response);
         this.successMessage = 'Vybavenie bolo úspešne pridané!';
         this.loadItems();
         this.newItemForm.reset();
       },
-      (error) => {
+      error: (error) => {
         console.error('Nepodarilo sa pridať vybavenie:', error);
         this.errorMessage = 'Nepodarilo sa pridať vybavenie.';
       }
-    );
+    });
   }
 
   goToUpdatePage(item: Item): void {
@@ -100,16 +100,16 @@ export class EquipmentComponent implements OnInit {
       return;
     }
 
-    this.equipmentService.deleteEquipment(index).subscribe(
-      (response) => {
+    this.equipmentService.deleteEquipment(index).subscribe({
+      next: (response) => {
         this.successMessage = 'Vybavenie bolo úspešne odstránené!';
         this.loadItems();
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Nepodarilo sa odstrániť vybavenie.';
         console.error(error);
       }
-    );
+    });
   }
 
   get name() {

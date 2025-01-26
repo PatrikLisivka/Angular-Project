@@ -53,14 +53,14 @@ export class UpdateEquipmentComponent implements OnInit {
       return;
     }
 
-    this.equipmentService.updateEquipment(this.itemId, this.item).subscribe(
-      (response) => {
+    this.equipmentService.updateEquipment(this.itemId, this.item).subscribe({
+      next: (response) => {
         this.successMessage = 'Vybavenie bolo úspešne aktualizované!';
         this.router.navigate(['/equipment']);
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Nepodarilo sa upravit vybavenie.';
       }
-    );
+    });
   }
 }

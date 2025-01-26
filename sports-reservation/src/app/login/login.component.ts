@@ -19,16 +19,16 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login(): void {
-    this.authService.login(this.username, this.password).subscribe(
-      (response) => {
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', this.username);
         this.router.navigate(['/equipment']);
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Prihlásenie zlyhalo. Skúste to znova.';
         console.error(error);
       }
-    );
+    });
   }
 }
