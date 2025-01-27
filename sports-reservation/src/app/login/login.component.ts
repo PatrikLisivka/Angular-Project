@@ -26,7 +26,7 @@ export class LoginComponent {
         this.router.navigate(['/equipment']);
       },
       error: (error) => {
-        this.errorMessage = 'Prihlásenie zlyhalo. Skúste to znova.';
+        this.errorMessage = 'Nesprávne prihlasovacie údaje';
         console.error(error);
       }
     });
